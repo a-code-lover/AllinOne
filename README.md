@@ -2,16 +2,6 @@
 
 Hugo theme - AllinOne.
 
-[Demo](https://orianna-zzo.github.io/AllinOne-html/)
-
-Here are some screen shots.
-
-![Carousel](https://github.com/orianna-zzo/AllinOne/blob/master/images/screenshot.png)
-
-![List](https://github.com/orianna-zzo/AllinOne/blob/master/images/screenshot2.png)
-
-![Post](https://github.com/orianna-zzo/AllinOne/blob/master/images/screenshot3.png)
-
 ## Features
 
 * Responsive full image carousel (Responsive text layout on it should be improved)
