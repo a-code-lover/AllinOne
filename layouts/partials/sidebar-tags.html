@@ -1,11 +1,11 @@
-
+{{ $kind := .Kind }}
 {{ range where .Pages ".Params.tags" "ne" nil }}
   {{ $.Scratch.Add "tags"  (apply .Params.tags "lower" ".") }}
 {{ end }}
 
 {{ $terms := uniq ($.Scratch.Get "tags") }}
 
-{{ if gt (len $terms) 0 }}
+{{ if or (gt (len $terms) 0) (eq $kind "home") }}
   <hr>
   {{ with .Site.Taxonomies.tags }}
     <div class="post-meta">
@@ -19,15 +19,17 @@
       </div>
 
       <div class="li-x post-meta tags-md" style="margin-left: -8px;">
-        
-        
-        {{ range first 20 (where .ByCount "Name" "in" $terms)  }}
+        {{ if eq $kind "section" }}
+          {{ range first 20 (where .ByCount "Name" "in" $terms)  }}
             <li><a href="{{ "tags/" | absLangURL }}{{ .Name | urlize }}" role="button"><span>{{ .Name }} ({{ .Count }})</span></a></li>
-          
+          {{ end }}
+        {{ else }}
+          {{ range first 20 .ByCount }}
+            <li><a href="{{ "tags/" | absLangURL }}{{ .Name | urlize }}" role="button"><span>{{ .Name }} ({{ .Count }})</span></a></li>
+          {{ end }}
         {{ end }}
       </div>
     </div>
 
-    
   {{ end }}
 {{ end }}
